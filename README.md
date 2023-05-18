@@ -217,8 +217,13 @@ Here we are playing around with incorporating an image headline to make the webs
 
 We also played around with the instructions text and with the headers to make it as self explanatory as possible.
 
+**How it relates to Collective Intelligence Seminar (Web3)**
+This digital interface can be used to generate futures that children not only build out of their own personalized prompts but also can be later turned to an NFT marketplace as a means to generate funds for teacher or parent associations and events that will enrich the student experience later.
+
 
 ### End Product Photos
+
+<iframe src="https://drive.google.com/file/d/1YW8ZNQZqIR8PUvrW4pTaYo8ZwW8aB_ad/preview" width="640" height="480" allow="autoplay"></iframe>
 
 ![](https://hackmd.io/_uploads/HJ9cNFmBn.png)
 
