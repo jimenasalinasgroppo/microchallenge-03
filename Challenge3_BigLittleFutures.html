@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recolector de futuros</title>
+    <style>
+        * {
+            font-family: 'Andika', Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .target-text {
+            font-weight: 900;
+        }
+
+        fieldset {
+            margin-bottom: 8px;
+            border: none; /* Eliminar el borde del fieldset */
+        }
+
+        #image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            flex: 1;
+            margin: 8px;
+            text-align: center;
+        }
+
+        /* Estilos para el enlace del título */
+        .title-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .title-image {
+            max-width: 50%; /* Tamaño máximo del 100% del contenedor */
+            height: auto; /* Altura automática proporcional */
+        }
+
+        /* Estilos adicionales */
+        .container {
+            text-align: center;
+        }
+
+        #text-prompt,
+        #button-request {
+            margin-top: 8px;
+        }
+
+        #request-status {
+            margin-top: 16px;
+            font-weight: bold;
+        }
+
+        .prompt-instructions {
+            position: absolute;
+            color: #999999;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://www.ejemplo.com" class="title-link">
+            <img src="https://gcdnb.pbrd.co/images/Sn4hsohxCYFn.jpg" alt="Título del sitio web" class="title-image">
+        </a>
+
+        <fieldset>
+            <legend>
+                <img src="https://gcdnb.pbrd.co/images/oMfEfCDbbq5K.jpg" alt="Instrucciones">
+            </legend>
+            <div>
+                <textarea id="text-prompt" rows="4" cols="52" placeholder="Por favor, describe y detalla lo más posible tu futuro"></textarea>
+            </div>
+            <div>
+                <button id="button-request">Crear mi futuro</button>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div>
+                <p id="request-status">Ningún futuro solicitado</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div id="image-container"></div>
+        </fieldset>
+    </div>
+
+    <script>
+        const dalleEndpoint = 'https://api.openai.com/v1/images/generations';
+        const reqButton = document.getElementById('button-request');
+        const imgContainer = document.getElementById('image-container');
+        const reqStatus = document.getElementById('request-status');
+        const textPrompt = document.getElementById('text-prompt');
+
+        reqButton.addEventListener('click', function() {
+            reqStatus.textContent = 'Creando tu futuro...';
+
+            const key = 'xxx'; // Replace with your own API key
+            const prompt = textPrompt.value;
+            const count = 2; // Cambiar a 2 para obtener dos opciones
+            const imageSize = 256;
+
+            const reqBody = {
+                prompt: prompt,
+                n: count,
+                size: imageSize + 'x' + imageSize,
+                response_format: 'url'
+            };
+
+            const reqParams = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${key}`
+                },
+                body: JSON.stringify(reqBody)
+            };
+
+            fetch(dalleEndpoint, reqParams)
+                .then(res => res.json())
+                .then(addImages)
+                .catch(error => reqStatus.textContent = error);
+        });
+
+        function addImages(jsonData) {
+            if (jsonData.error) {
+                reqStatus.textContent = 'ERROR: ' + jsonData.error.message;
+                return;
+            }
+
+            reqStatus.textContent = '¡Aquí tenemos ' + jsonData.data.length + ' opciones de futuro! \n Por favor elije la que más se parezca a lo que imaginas';
+            imgContainer.innerHTML = ''; // Reiniciar el contenedor de imágenes
+
+            for (let i = 0; i < jsonData.data.length; i++) {
+                const imgURL = jsonData.data[i].url;
+
+                const imgNode = document.createElement('img');
+                imgNode.src = imgURL;
+                imgNode.onclick = function() {
+                    saveFuture(imgURL);
+                };
+
+                const optionText = document.createElement('p');
+                optionText.textContent = 'Opción ' + (i + 1);
+
+                const imgWrapper = document.createElement('div');
+                imgWrapper.classList.add('image-wrapper');
+                imgWrapper.appendChild(optionText);
+                imgWrapper.appendChild(imgNode);
+
+                imgContainer.appendChild(imgWrapper);
+            }
+        }
+
+        function saveFuture(imageURL) {
+            fetch('/save-future.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ imageURL: imageURL })
+            })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'success') {
+                        alert('¡Gracias! Tu futuro ha quedado guardado.');
+                    } else {
+                        alert('Error al guardar el futuro. Por favor, inténtalo de nuevo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al guardar el futuro. Por favor, inténtalo de nuevo.');
+                });
+        }
+    </script>
+</body>
+</html>
