@@ -220,6 +220,16 @@ We also played around with the instructions text and with the headers to make it
 **How it relates to Collective Intelligence Seminar (Web3)**
 This digital interface can be used to generate futures that children not only build out of their own personalized prompts but also can be later turned to an NFT marketplace as a means to generate funds for teacher or parent associations and events that will enrich the student experience later.
 
+### Day 4
+During Day 4 we received feedback from Santi and Victor during our presentation.
+
+What we heard:
+- The collage and the digital interface seem an intro to machine learning where in collage creation we have control of the inputs with the children but using Dall-E we do not have control of the inputs.
+- What are the ethical implications of using Dall-E with children? How does this relate to a more rigid collage creation exercise?
+- We were also asked to double click on our systems diagram and to be more specific for future generations of MDEF students wanting to look at our work.
+- Be specific about our learning outcomes per workshop.
+- Think of the implications of using chat GPT4 during our design process (from an ethical perspective and also from a building one).
+
 
 ### End Product Photos
 
@@ -245,7 +255,7 @@ https://drive.google.com/file/d/1_lT5Kwxd2q2L125VvRh4LR_9sBwKKhCh/view?usp=share
 | Animals are treated like our family without killing the environment                   |  ![](https://hackmd.io/_uploads/Sk8QGFQrn.png) |
 | In sports competitions, humans can play any clothes they want. There are no uniforms. | ![](https://hackmd.io/_uploads/Hyvjpu7Hh.jpg)  |
 | One sports arena where all the sports in the world can be played in the same place.   | ![](https://hackmd.io/_uploads/BkB8auXr2.jpg)|
-| Parks of the future have animals and fruits and cars are forbidden.                   | ![](https://hackmd.io/_uploads/B1Jin_XSn.jpg)|
+| Parks of the future have animals and fruits and cars are forbidden.                   | ![](https://hackmd.io/_uploads/HJLZnxHSh.png)|
 | A school where you can bring your own pokemon to class                                |  ![](https://hackmd.io/_uploads/rJn0iu7Hh.png)  |
 | In the zoos of the future there are giant snakes and horses are tiny.                 |![](https://hackmd.io/_uploads/SkWDiu7r3.png)|
 | Its forbidden to hunt animals and humans are friends with animals.                    |  ![](https://hackmd.io/_uploads/r1SG6OmH3.jpg)|
@@ -261,13 +271,22 @@ We plan to print out the AI generated images from our platform and bring them ph
 *Illustration explaining function, parts and relations*
 ![](https://hackmd.io/_uploads/SJaFnmMB2.png)
 
-## Resources
+Updated systems diagram
+![](https://hackmd.io/_uploads/rk8WRlBH2.png)
 
+## Resources and references
+ 
 We found this helpful video from YouTube that helps us a lot on how to build the final product.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sibEVMI1gWY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 We used the video in combination with chat GPT to solve any potential bugs and relink to a new HTML page.
+
+Our main inspiration for this project was this Facebook initiative that uses AI to bring children's illustrations to life, using puppet-like animation to make the body parts move individually.
+https://ai.facebook.com/blog/using-ai-to-bring-childrens-drawings-to-life/
+
+This was another inspiration for us that includes hardware and made us question if we were to include speech-to-text generation we would do it with something as simple as a cardboard box with a voice sensor.
+https://aiyprojects.withgoogle.com/
 
 ## Related Links
 
